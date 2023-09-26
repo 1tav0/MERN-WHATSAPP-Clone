@@ -6,7 +6,11 @@ import Pusher from 'pusher';
 import cors from 'cors';
 //app config
 const app = express();
-const port = process.env.PORT || 9000;
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 9000;
+}
 //middleware -to make stuff go through
 app.use(express.json());
 app.use(cors());
@@ -85,4 +89,4 @@ app.post('/messages/new',(req, res) => {
 })
 
 //listener
-app.listen(port, ()=>console.log(`listening on localhost: ${port}`))
+app.listen(port, ()=>console.log(`server has started on port: ${port}`))
